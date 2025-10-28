@@ -1,1 +1,0 @@
-- Please add (default-img.jpg to storage/app/public folder)
