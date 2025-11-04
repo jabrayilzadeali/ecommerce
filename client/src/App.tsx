@@ -9,35 +9,56 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
 import { Button } from "./components/ui/button"
-import { ChevronDown, Heart, Menu, MessageCircle, MessageCircleMore, Scale, Scale3D, Search, ShoppingCart, Star, UserRound } from "lucide-react"
+import {
+    ArrowRight,
+    ChevronDown,
+    Heart,
+    Menu,
+    MessageCircle,
+    MessageCircleMore,
+    Scale,
+    Scale3D,
+    Search,
+    ShoppingCart,
+    Star,
+    UserRound,
+} from "lucide-react"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "./components/ui/label"
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ModeToggle } from "./components/mode-toggle"
 import { Input } from "./components/ui/input"
+import { ProductCard } from "./components/custom/ProductCard"
+import { cn } from "./lib/utils"
 
 function App() {
     const [open, setOpen] = useState(false)
     const [categoryIsOpen, setCategoryIsOpen] = useState(false)
     const [enabled, setEnabled] = useState(false)
+    const [showNavbarOnMobile, setShowNavbarOnMobile] = useState(false)
 
     return (
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
             <header className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between bg-zinc-100 dark:bg-zinc-900 rounded-2xl overflow-hidden px-4">
-                    <Button variant={"ghost"} className="md:hidden">
+                    <Button
+                        onClick={() =>
+                            setShowNavbarOnMobile(!showNavbarOnMobile)
+                        }
+                        variant={"ghost"}
+                        className="md:hidden"
+                    >
                         <Menu />
                     </Button>
+
                     <ul className="hidden md:flex items-center gap-3">
                         <li className="px-2">
                             <a href="">Link 1</a>
@@ -77,6 +98,75 @@ function App() {
                     <div className="flex items-center space-x-2">
                         <ModeToggle />
                     </div>
+                </div>
+                <div
+                    className={cn(
+                        "w-full h-dvh bg-white z-10",
+                        showNavbarOnMobile ? "block" : "hidden"
+                    )}
+                >
+                    <h2 className="font-bold my-3">Sayt üzrə naviqasiya</h2>
+                    <div className="flex justify-center gap-3 items-center">
+                        <Button className="h-full md:flex aspect-square bg-zinc-900 hover:bg-zinc-800 text-white">
+                            <Scale className="w-full h-full" />
+                        </Button>
+                        <Button className="h-full md:flex aspect-square bg-zinc-900 hover:bg-zinc-800 text-white">
+                            <ShoppingCart />
+                        </Button>
+                        <Button className="h-full md:flex aspect-square bg-zinc-900 hover:bg-zinc-800 text-white">
+                            <Heart />
+                        </Button>
+                        <Button className="h-full md:flex aspect-square bg-zinc-900 hover:bg-zinc-800 text-white">
+                            <UserRound />
+                        </Button>
+                    </div>
+                    <ul className="flex mt-5 flex-col gap-3">
+                        <li className="bg-gray-100 text-md flex justify-between items-center font-semibold py-2 px-4 rounded-2xl">
+                            <a href="">Link 1</a>
+                            <ArrowRight size={16} />
+                        </li>
+                        <li className="bg-gray-100 text-md flex justify-between items-center font-semibold py-2 px-4 rounded-2xl">
+                            <a href="">Link 2</a>
+                            <ArrowRight size={16} />
+                        </li>
+                        <li className="bg-gray-100 text-md flex justify-between items-center font-semibold py-2 px-4 rounded-2xl">
+                            <a href="">Link 3</a>
+                            <ArrowRight size={16} />
+                        </li>
+                        <li className="bg-gray-100 text-md flex justify-between items-center font-semibold py-2 px-4 rounded-2xl">
+                            <a href="">Link 4</a>
+                            <ArrowRight size={16} />
+                        </li>
+                        <Button
+                            variant={"ghost"}
+                            className="bg-gray-100 flex justify-between font-semibold py-2 !px-4 rounded-2xl"
+                        >
+                            <span className="text-[16px]">Actions</span>
+                            <ArrowRight />
+                        </Button>
+                        {/* <li className="px-2">
+                            <DropdownMenu open={open} onOpenChange={setOpen}>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="ghost">
+                                        Actions
+                                        <ChevronDown
+                                            className={
+                                                open
+                                                    ? "rotate-180 duration-300 transition-transform"
+                                                    : "transition-transform duration-300"
+                                            }
+                                        />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuItem>link1</DropdownMenuItem>
+                                    <DropdownMenuItem>link2</DropdownMenuItem>
+                                    <DropdownMenuItem>link3</DropdownMenuItem>
+                                    <DropdownMenuItem>link4</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </li> */}
+                    </ul>
                 </div>
                 <div className="flex w-full mt-5 h-12 gap-3">
                     <img
@@ -120,6 +210,33 @@ function App() {
                     </Button>
                 </div>
             </header>
+            <section className="mx-auto w-full mt-10 max-w-6xl px-4 sm:px-6 lg:px-8">
+                <Carousel
+                    className="w-full rounded-4xl overflow-hidden"
+                    opts={{ align: "start" }}
+                >
+                    <CarouselContent className="">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                            <CarouselItem
+                                key={index}
+                                className="md:basis-[70%]"
+                            >
+                                <div className="p-1">
+                                    <div>
+                                        <div className="flex rounded-2xl h-96 items-center justify-center bg-red-500 p-6">
+                                            <span className="text-4xl font-semibold">
+                                                {index + 1}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="ml-10" />
+                    <CarouselNext className="mr-10" />
+                </Carousel>
+            </section>
             <main className="mx-auto w-full mt-10 max-w-6xl px-4 sm:px-6 lg:px-8">
                 <h5 className="text-sm text-red-600 dark:text-zinc-400">
                     Ən çox satılanlar
@@ -127,68 +244,8 @@ function App() {
                 <h1 className="text-2xl font-bold">
                     Bu məhsullar hər kəsin sevimlisidir!
                 </h1>
-                <div className="grid mt-72 md:mt-28 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    <Card className="relative pt-0 max-w-80">
-                        <div className="relative mx-auto -mt-10 w-[90%] aspect-square">
-                            <img
-                                className="rounded-2xl object-cover w-full h-full"
-                                src="https://placehold.co/600x600"
-                                alt=""
-                            />
-                            <span className="absolute top-3 left-3 py-1 px-2 rounded-2xl bg-red-500 text-white text-sm">
-                                -140 ₼
-                            </span>
-                            <Button
-                                size="icon-sm"
-                                className="absolute top-3 right-3 py-1 px-2 rounded-2xl bg-red-500 text-white"
-                            >
-                                <Scale />
-                            </Button>
-                        </div>
-                        <CardHeader className="">
-                            <CardDescription className="flex gap-3">
-                                <div className="flex gap-1">
-                                    <Star size={20} />
-                                    <span>0</span>
-                                </div>
-                                <div className="flex gap-1">
-                                    <MessageCircleMore size={20} />
-                                    <span>0 rəy</span>
-                                </div>
-                            </CardDescription>
-                            <CardTitle className="col-span-2 text-sm font-normal">
-                                Smartfon Apple iPhone 16 PRO MAX 512GB DESERT
-                                TITANIUM
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex justify-between">
-                            <div>
-                                <p className="line-through font-medium text-sm text-zinc-500">
-                                    1479.99 ₼
-                                </p>
-                                <p className="text-xl font-semibold">
-                                    3799.99 ₼
-                                </p>
-                            </div>
-                            <Separator orientation="vertical" />
-                            <div>
-                                <p className="text-sm font-medium text-zinc-500">
-                                    6 ay
-                                </p>
-                                <p className="text-xl font-semibold">
-                                    633.33 ₼
-                                </p>
-                            </div>
-                        </CardContent>
-                        <CardFooter className="flex gap-2">
-                            <Button className="flex-3/4">
-                                Səbətə əlavə et
-                            </Button>
-                            <Button>
-                                <Heart />
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                <div className="grid mt-16 md:mt-28 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <ProductCard />
                 </div>
             </main>
         </ThemeProvider>
