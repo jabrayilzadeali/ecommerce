@@ -1,6 +1,4 @@
-import { useState } from "react"
 import "./App.css"
-import { ThemeProvider } from "@/components/theme-provider"
 import {
     Carousel,
     CarouselContent,

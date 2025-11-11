@@ -19,10 +19,12 @@ import {
     Menu,
     MessageCircle,
     MessageCircleMore,
+    Phone,
     Scale,
     Scale3D,
     Search,
     ShoppingCart,
+    Smartphone,
     Star,
     UserRound,
 } from "lucide-react"
@@ -34,8 +36,10 @@ import Container from "../Container"
 export default function Navbar() {
     const [showNavbarOnMobile, setShowNavbarOnMobile] = useState(false)
     const [open, setOpen] = useState(false)
+    const [dropdownOnHover, setDropdownOnHover] = useState(false)
+
   return (
-      <header>
+      <header className="mb-2">
           <Container>
               <div className="flex justify-between bg-zinc-100 dark:bg-zinc-900 rounded-2xl overflow-hidden px-4">
                   <Button
@@ -154,11 +158,123 @@ export default function Navbar() {
                               Katalog
                           </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent>
-                          <DropdownMenuItem>link1</DropdownMenuItem>
-                          <DropdownMenuItem>link2</DropdownMenuItem>
-                          <DropdownMenuItem>link3</DropdownMenuItem>
-                          <DropdownMenuItem>link4</DropdownMenuItem>
+                      <DropdownMenuContent className="bg-transparent border-0 shadow-none">
+                          <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8 grid justify-items-center">
+                              <div className="grid grid-cols-[15rem_1fr] 3xl:w-[1088px] bg-zinc-100 rounded-xl p-3">
+                                  <div className="space-y-2">
+                                      <DropdownMenuItem className="bg-zinc-200 hover:!bg-zinc-200 font-medium">
+                                          <Smartphone />
+                                          <span>
+                                              Smartfonlar və aksessuarlar
+                                          </span>
+                                      </DropdownMenuItem>
+                                      <DropdownMenuItem
+                                          onMouseEnter={() =>
+                                              setDropdownOnHover(true)
+                                          }
+                                          onMouseLeave={() =>
+                                              setDropdownOnHover(false)
+                                          }
+                                          className="hover:!bg-zinc-200  font-medium"
+                                      >
+                                          <Smartphone />
+                                          <span>
+                                              Smartfonlar və aksessuarlar{" "}
+                                              {dropdownOnHover
+                                                  ? "yes it is hovered"
+                                                  : "none"}
+                                          </span>
+                                      </DropdownMenuItem>
+                                      <DropdownMenuItem className="hover:!bg-zinc-200 font-medium">
+                                          <Smartphone />
+                                          <span>
+                                              Smartfonlar və aksessuarlar
+                                          </span>
+                                      </DropdownMenuItem>
+                                      <DropdownMenuItem className="hover:!bg-zinc-200 font-medium">
+                                          <Smartphone />
+                                          <span>
+                                              Smartfonlar və aksessuarlar
+                                          </span>
+                                      </DropdownMenuItem>
+                                      <DropdownMenuItem className="hover:!bg-zinc-200 font-medium">
+                                          <Smartphone />
+                                          <span>
+                                              Smartfonlar və aksessuarlar
+                                          </span>
+                                      </DropdownMenuItem>
+                                  </div>
+                                  <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+                                      <div className="break-inside-avoid">
+                                          <DropdownMenuItem className="font-bold text-md">
+                                              link1
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link2
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link3
+                                          </DropdownMenuItem>
+                                      </div>
+                                      <div className="break-inside-avoid">
+                                          <DropdownMenuItem className="font-bold text-md">
+                                              link1
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link2
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link3
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link4
+                                          </DropdownMenuItem>
+                                      </div>
+                                      <div className="break-inside-avoid">
+                                          <DropdownMenuItem className="font-bold text-md">
+                                              link1
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link2
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link3
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link4
+                                          </DropdownMenuItem>
+                                      </div>
+                                      <div className="break-inside-avoid">
+                                          <DropdownMenuItem className="font-bold text-md">
+                                              link1
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link2
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link3
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link4
+                                          </DropdownMenuItem>
+                                      </div>
+                                      <div className="break-inside-avoid">
+                                          <DropdownMenuItem className="font-bold text-md">
+                                              link1
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link2
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link3
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem>
+                                              link4
+                                          </DropdownMenuItem>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
                       </DropdownMenuContent>
                   </DropdownMenu>
 
